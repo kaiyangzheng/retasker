@@ -15,10 +15,14 @@ As Ebbinghaus put it:
 # Frontend
 
 - [ ] Home page
-  - [ ] Modify tasks modal
+  - [x] Add task modal
+  - [x] Complete task modal
+  - [ ] Modify task modal
+  - [ ] Delete task modal
+  - [ ] Favorite task modal
   - [ ] Next up tasks
   - [ ] Waiting tasks
-  - [ ] remove functions/useEffect getting task stats, info and improvement when backend is done and add data fetching for those components
+  - [x] remove functions/useEffect getting task stats, info and improvement when backend is done and add data fetching for those components
 - [ ] Upcoming page
 - [ ] Calendar page
 - [ ] Friends page
