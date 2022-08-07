@@ -23,6 +23,7 @@ As Ebbinghaus put it:
   - [ ] Next up tasks
   - [ ] Waiting tasks
   - [x] remove functions/useEffect getting task stats, info and improvement when backend is done and add data fetching for those components
+  - [x] error handling when there are no tasks
 - [ ] Upcoming page
 - [ ] Calendar page
 - [ ] Friends page
