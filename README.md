@@ -13,20 +13,14 @@ As Ebbinghaus put it:
 ---
 
 # Frontend
-
-- [ ] Home page
-  - [x] Add task modal
-  - [x] Complete task modal
-  - [ ] Modify task modal
-  - [ ] Delete task modal
-  - [ ] Favorite task modal
-  - [ ] Next up tasks
-  - [ ] Waiting tasks
-  - [x] remove functions/useEffect getting task stats, info and improvement when backend is done and add data fetching for those components
-  - [x] error handling when there are no tasks
+- [x] Appbar
+- [x] Login page
+- [ ] Sign up page
+- [~] Home page
 - [ ] Upcoming page
 - [ ] Calendar page
 - [ ] Friends page
 - [ ] Chat page
 - [ ] Collabs page
+- [ ] Footer
 - [x] Progress bar
