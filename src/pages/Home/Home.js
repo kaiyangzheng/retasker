@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
 
 import Greeting from './../../components/Greeting/Greeting';
 import ModifyGroup from './../../components/ModifyGroup/ModifyGroup';
 import TaskReport from './../../components/TaskReport/TaskReport';
+import WaitingTable from './../../components/WaitingTable/WaitingTable';
+import NextTask from './../../components/NextTask/NextTask';
 
 import styles from './Home.module.css';
 
 export default function Home(props) {
-    const { loaded, loggedIn, tasks, setTasks, goals, tasksStats, openModal, setOpenModal, setProgress } = props;
+    const { loaded, loggedIn, tasks, setTasks, goals, waitingTasks, nextTasks, tasksStats, setOpenModal } = props;
 
     useEffect(() => {
         document.title = "Retask | Home";
@@ -79,6 +81,12 @@ export default function Home(props) {
                             tasks={tasks}
                             setTasks={setTasks}
                         />
+                    </Box>
+                    <Box className="item">
+                        <WaitingTable tasks={waitingTasks}/>
+                    </Box>  
+                    <Box className="item">
+                        <NextTask tasks={nextTasks} />
                     </Box>
                 </Box>
             </Box>

@@ -9,7 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import ListItemButton from '@mui/material/ListItemButton';
+import ListItemButton from '@mui/material/ListItemButton'; 
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
@@ -149,9 +149,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 export default function MiniDrawer(props) {
-    const { theme, setTheme, loggedIn, setLoggedIn, open, setOpen, children } = props;
+    const { theme, setTheme, loggedIn, setLoggedIn, open, setOpen, setTasks, setTasksStats, setGoals, children } = props;
     const navigate = useNavigate();
+    const location = useLocation();
+    const [disableSidebar, setDisableSidebar] = React.useState(false);
+    const disabledPaths = ['/login', '/register'];
+
+    React.useEffect(()=>{
+        if (disabledPaths.includes(location.pathname)) {
+            setDisableSidebar(true);
+        }
+    }, [location]);
+
     const handleLogout = () => {
+        if (disabledPaths.includes(location.pathname)) {
+            return;
+        }
         localStorage.removeItem('loggedIn')
         localStorage.removeItem('user')
         localStorage.removeItem('token')
@@ -228,7 +241,7 @@ export default function MiniDrawer(props) {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to={disableSidebar ? "#" : "/home"} style={{ textDecoration: 'none', color: 'inherit' }} className={disableSidebar ? styles.disabledLink : styles.link}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -248,7 +261,7 @@ export default function MiniDrawer(props) {
                             <ListItemText primary={'Dashboard'} sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                     </Link>
-                    <Link to="/upcoming" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to={disableSidebar ? "#" : "/upcoming"} style={{ textDecoration: 'none', color: 'inherit' }} className={disableSidebar ? styles.disabledLink : styles.link}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -268,7 +281,7 @@ export default function MiniDrawer(props) {
                             <ListItemText primary={'Upcoming'} sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                     </Link>
-                    <Link to="/calendar" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to={disableSidebar ? "#" : "/calendar"} style={{ textDecoration: 'none', color: 'inherit' }} className={disableSidebar ? styles.disabledLink : styles.link}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -291,7 +304,7 @@ export default function MiniDrawer(props) {
                 </List>
                 <Divider />
                 <List>
-                    <Link to="/friends" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to={disableSidebar ? "#" : "/friends"} style={{ textDecoration: 'none', color: 'inherit' }} className={disableSidebar ? styles.disabledLink : styles.link}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -311,7 +324,7 @@ export default function MiniDrawer(props) {
                             <ListItemText primary={'Friends'} sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                     </Link>
-                    <Link to="/chat" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to={disableSidebar ? "#" : "/chat"} style={{ textDecoration: 'none', color: 'inherit' }} className={disableSidebar ? styles.disabledLink : styles.link}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -331,7 +344,7 @@ export default function MiniDrawer(props) {
                             <ListItemText primary={'Chat'} sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                     </Link>
-                    <Link to="/collaborations" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to={disableSidebar ? "#": "/collaborations"} style={{ textDecoration: 'none', color: 'inherit' }} className={disableSidebar ? styles.disabledLink : styles.link}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -355,7 +368,7 @@ export default function MiniDrawer(props) {
                 </List>
                 <Divider />
                 <List>
-                    <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to={disableSidebar ? "#" : "/profile"} style={{ textDecoration: 'none', color: 'inherit' }} className={disableSidebar ? styles.disabledLink : styles.link}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -375,7 +388,7 @@ export default function MiniDrawer(props) {
                             <ListItemText primary={'Account'} sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                     </Link>
-                    <Link to="/settings" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to={disableSidebar ? "#" : "/settings"} style={{ textDecoration: 'none', color: 'inherit' }} className={disableSidebar ? styles.disabledLink : styles.link}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -395,7 +408,7 @@ export default function MiniDrawer(props) {
                             <ListItemText primary={'Settings'} sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                     </Link>
-                    <div onClick={handleLogout}>
+                    <div onClick={handleLogout} className={disableSidebar ? styles.disabledLink : styles.link}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
@@ -419,9 +432,13 @@ export default function MiniDrawer(props) {
             </Drawer>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                sx={{ 
+                    flexGrow: 1,
+                     p: 3, 
+                     width: { sm: `calc(100% - ${drawerWidth}px)` },
+                     marginTop: '40px'
+                }}
             >
-                <Toolbar />
                 {children}
             </Box>
         </Box >

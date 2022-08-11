@@ -64,7 +64,7 @@ export default function TaskReport(props) {
           textAlign: 'center',
         }
       }}>
-        Task Report
+        📈 Task Report
       </Typography>
       <Box sx={{
         ['@media (max-width: 1024px)']: {

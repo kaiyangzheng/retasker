@@ -29,6 +29,7 @@ export default function Greeting(props) {
             padding: '20px',
             display: 'flex',
             justifyContent: 'space-between',
+            alignItems: 'center',
             borderRadius: '10px',
             ['@media (max-width: 768px)']: {
                 flexDirection: 'column',
@@ -44,7 +45,7 @@ export default function Greeting(props) {
                     {timeOfDay.timeOfDayText}, {loggedIn.user}
                 </Typography>
                 <Box sx={{
-                    marginTop: '20px',
+                    marginTop: '10px',
                 }}>
                     <FormatQuoteIcon sx={{
                         width: '40px',

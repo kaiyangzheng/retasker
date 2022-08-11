@@ -42,10 +42,10 @@ export default function ModifyGroup(props) {
                     alignItems: "flex-start",
                 }}>
                     <Typography variant="h4" component="div">
-                        Modify your tasks
+                        🔧 Modify Tasks
                     </Typography>
                     <Typography variant="body1" component="div">
-                        Add, edit, delete or favorite tasks.
+                        Add, edit, delete or favorite your tasks.
                     </Typography>
                 </Box>
 

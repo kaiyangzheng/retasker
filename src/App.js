@@ -29,6 +29,8 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [tasksStats, setTasksStats] = useState({});
   const [goals, setGoals] = useState({});
+  const [waitingTasks, setWaitingTasks] = useState([]);
+  const [nextTasks, setNextTasks] = useState({});
 
   // modal
   const [openModal, setOpenModal] = useState({'open': false, 'type': '', 'taskId': '', 'reviewSessionId': ''});
@@ -43,12 +45,31 @@ function App() {
     localStorage.setItem('theme', theme);
   }, [theme])
 
+  // migrate to backend in the future
+  const getWaitingTasks = () => {
+    const waitingTasks = tasks.filter(task => task.prev_review_date == null);
+    setWaitingTasks(waitingTasks);
+  }
+
+  // migrate to backend in the future
+  const getNextTask = () => {
+    let sortedTasks = tasks.sort((a, b) => {
+      return a.prev_review_date - b.prev_review_date;
+    })
+    sortedTasks = sortedTasks.filter(task => task.prev_review_date != null);
+    if (sortedTasks.length > 0) {
+      setNextTasks(sortedTasks.splice(0, 3));
+    }
+  }
+
   // get info from task api - run when user logs in
   useEffect(() => {
     const getData = async () => {
       await getTasks(setTasks, setLoaded, loaded);
       await getTasksStats(setTasksStats, setLoaded, loaded);
       await getGoals(setGoals, setLoaded, loaded)
+      getWaitingTasks();
+      getNextTask();
       setLoaded(true);
     }
 
@@ -56,7 +77,7 @@ function App() {
       getData();
     }
     // data is loaded when user logs in and when progress changes
-  }, [loggedIn, progress])
+  }, [loggedIn, tasks])
 
 
   const darkTheme = createTheme({
@@ -72,7 +93,17 @@ function App() {
       <CompleteTaskModal openModal={openModal} setOpenModal={setOpenModal} tasks={tasks} setTasks={setTasks} setProgress={setProgress}/>
       <Router>
         <div className="App">
-          <AppBar theme={theme} setTheme={setTheme} loggedIn={loggedIn} setLoggedIn={setLoggedIn} open={openAppbar} setOpen={setOpenAppbar} >
+          <AppBar 
+            theme={theme} 
+            setTheme={setTheme} 
+            loggedIn={loggedIn} 
+            setLoggedIn={setLoggedIn} 
+            open={openAppbar} 
+            setOpen={setOpenAppbar} 
+            setTasks={setTasks}
+            setTasksStats={setTasksStats}
+            setGoals={setGoals}
+          >
             <Routes>
               <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setProgress={setProgress} />} />
               <Route path="/home" element={<Home 
@@ -82,6 +113,8 @@ function App() {
                 setTasks={setTasks}
                 tasksStats={tasksStats}
                 goals={goals}
+                waitingTasks={waitingTasks}
+                nextTasks={nextTasks}
                 openModal={openModal}
                 setOpenModal={setOpenModal}
                 setProgress={setProgress} 
