@@ -16,7 +16,7 @@ As Ebbinghaus put it:
 - [x] Appbar
 - [x] Login page
 - [ ] Sign up page
-- [~] Home page
+- [ ] Home page <- In progress
 - [ ] Upcoming page
 - [ ] Calendar page
 - [ ] Friends page
