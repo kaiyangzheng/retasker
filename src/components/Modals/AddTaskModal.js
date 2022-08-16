@@ -14,19 +14,19 @@ export default function AddTaskModal(props) {
 
     const handleAddTask = (e) => {
         e.preventDefault();
-        if (task.name.length === 0 || task.description.length === 0) {
+        if (task.name.length === 0) {
             return;
         }
-        addTask(task, tasks, setTasks, setProgress);
+        addTask(task, setProgress);
         setTask({'name': '', 'description': ''});
     }
 
     const handleAddAndCompleteTask = async (e) => {
         e.preventDefault();
-        if (task.name.length === 0 || task.description.length === 0) {
+        if (task.name.length === 0) {
             return;
         }
-        const res = await addTask(task, tasks, setTasks, setProgress);
+        const res = await addTask(task, setProgress);
         const reviewSessionId = await createReview(res.id, setProgress);
         setTask({'name': '', 'description': ''});
         setOpenModal({open: true, type: 'complete-task', taskId: res.id, reviewSessionId: reviewSessionId});

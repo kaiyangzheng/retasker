@@ -10,7 +10,7 @@ import NextTask from './../../components/NextTask/NextTask';
 import styles from './Home.module.css';
 
 export default function Home(props) {
-    const { loaded, loggedIn, tasks, setTasks, goals, waitingTasks, nextTasks, tasksStats, setOpenModal } = props;
+    const { loaded, loggedIn, tasks, setTasks, goals, waitingTasks, nextTasks, tasksStats, setOpenModal, setProgress } = props;
 
     useEffect(() => {
         document.title = "Retask | Home";
@@ -39,7 +39,9 @@ export default function Home(props) {
             }}>
                 <Box sx={{
                     flexGrow: 2,
-                    marginRight: '20px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    marginRight: '10px',
                     '.item:not(:first-child)': {
                         marginTop: '20px'
                     },
@@ -49,23 +51,18 @@ export default function Home(props) {
                         marginRight: '0px',
                     }
                 }}>
-                    <Box className="item" sx={{
-                    }}>
-                        <Box>
-                            <Greeting loggedIn={loggedIn} />
-                        </Box>
-                        <Box sx={{
-                            marginTop: '20px',
-                        }}>
-                            <TaskReport
-                                goals={goals}
-                                tasksStats={tasksStats}
-                            />
-                        </Box>
+                    <Box className="item">
+                        <Greeting loggedIn={loggedIn} />
+                    </Box>
+                    <Box className="item">
+                        <TaskReport goals={goals} tasksStats={tasksStats} />
                     </Box>
                 </Box>
                 <Box sx={{
-                    marginLeft: '20px',
+                    marginLeft: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+
                     '.item:not(:first-child)': {
                         marginTop: '20px'
                     },
@@ -83,10 +80,10 @@ export default function Home(props) {
                         />
                     </Box>
                     <Box className="item">
-                        <WaitingTable tasks={waitingTasks}/>
+                        <WaitingTable tasks={waitingTasks} setOpenModal={setOpenModal} setProgress={setProgress}/>
                     </Box>  
                     <Box className="item">
-                        <NextTask tasks={nextTasks} />
+                        <NextTask tasks={nextTasks} setOpenModal={setOpenModal} setProgress={setProgress}/>
                     </Box>
                 </Box>
             </Box>

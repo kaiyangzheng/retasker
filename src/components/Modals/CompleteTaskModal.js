@@ -80,7 +80,7 @@ export default function CompleteTaskModal(props) {
                             After completing this task, rate the quality in which you accomplished it.
                         </Typography>
                         <Typography variant="body2" component="div">
-                            This will determine the next day you will review this task.
+                            This will determine the next date you will review this task.
                         </Typography>
                     </Box>
                     <Box sx={{

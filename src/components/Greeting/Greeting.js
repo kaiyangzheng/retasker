@@ -31,6 +31,7 @@ export default function Greeting(props) {
             justifyContent: 'space-between',
             alignItems: 'center',
             borderRadius: '10px',
+            maxHeight: '300px',
             ['@media (max-width: 768px)']: {
                 flexDirection: 'column',
                 alignItems: 'center',

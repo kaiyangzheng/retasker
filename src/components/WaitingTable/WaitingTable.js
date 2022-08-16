@@ -7,15 +7,17 @@ import Box from '@mui/material/Box'
 import TaskTable from './../TaskTable/TaskTable';
 
 export default function WaitingTable(props) {
-    const { tasks } = props;
+    const { tasks, setOpenModal, setProgress } = props;
     const columns = ['name', 'date_added']
     const columnLabels = ['Name', 'Date Added']
+    const actions = ['go', 'delete']
     return (
         <Card
             sx={{
                 padding: '20px',
                 borderRadius: '10px',
                 margin: "auto",
+                overflow: "auto",
             }}
         >
             <CardContent sx={{
@@ -35,7 +37,7 @@ export default function WaitingTable(props) {
                         ⏱ Waiting Tasks
                     </Typography>
                 </Box>
-                <TaskTable tasks={tasks} columns={columns} columnLabels={columnLabels} />
+                <TaskTable tasks={tasks} columns={columns} columnLabels={columnLabels} actions={actions} setOpenModal={setOpenModal} setProgress={setProgress}/>
             </CardContent>
         </Card>
     )

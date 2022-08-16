@@ -7,9 +7,10 @@ import Box from '@mui/material/Box'
 import TaskTable from './../TaskTable/TaskTable';
 
 export default function NextTask(props) {
-    const { tasks } = props;
+    const { tasks, setOpenModal, setProgress } = props;
     const columns = ['name', 'next_review_date'];
     const columnLabels = ['Name', 'Due'];
+    const actions = ['go', 'delete'];
     return (
         <Card
             sx={{
@@ -35,7 +36,7 @@ export default function NextTask(props) {
                         ⏰ Next Tasks
                     </Typography>
                 </Box>
-                <TaskTable tasks={tasks} columns={columns} columnLabels={columnLabels} />
+                <TaskTable tasks={tasks} columns={columns} columnLabels={columnLabels} actions={actions} setOpenModal={setOpenModal} setProgress={setProgress}/>
             </CardContent>
         </Card>
     )

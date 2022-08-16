@@ -1,7 +1,7 @@
 import axiosInstance from './axiosApi';
 
 // add task 
-export async function addTask(task, tasks, setTasks, setProgress) {
+export async function addTask(task, setProgress) {
     setProgress(20);
     return axiosInstance.post('/api/v1/task/', task)
     .then(res =>{
@@ -12,6 +12,17 @@ export async function addTask(task, tasks, setTasks, setProgress) {
         setProgress(0);
         console.log(err)
         return err.message
+    })
+}
+
+// delete task
+export async function deleteTask(taskId){
+    return axiosInstance.delete(`/api/v1/task/${taskId}/`)
+    .then(res => {
+        return res.data;
+    }
+    ).catch(err => {
+        console.log(err)
     })
 }
 

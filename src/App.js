@@ -59,6 +59,8 @@ function App() {
     sortedTasks = sortedTasks.filter(task => task.prev_review_date != null);
     if (sortedTasks.length > 0) {
       setNextTasks(sortedTasks.splice(0, 3));
+    }else{
+      setNextTasks([]);
     }
   }
 

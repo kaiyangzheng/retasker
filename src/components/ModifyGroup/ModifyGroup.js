@@ -19,7 +19,6 @@ export default function ModifyGroup(props) {
             padding: '20px',
             borderRadius: '10px',
             margin: "auto",
-
             ['@media (max-width: 768px)']: {
                 maxWidth: "100%",
                 display: "flex",

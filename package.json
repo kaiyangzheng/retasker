@@ -1,5 +1,5 @@
 {
-  "name": "spaced-repetition-app-redesign",
+  "name": "retasker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +20,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^2.1.8",
     "react-top-loading-bar": "^2.1.0",
+    "react-transition-group": "^4.4.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
