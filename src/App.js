@@ -14,6 +14,7 @@ import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
 import AddTaskModal from './components/Modals/AddTaskModal';
 import CompleteTaskModal from './components/Modals/CompleteTaskModal';
+import Footer from './components/Footer/Footer';
 
 import { getTasks, getGoals, getTasksStats } from './utils/loadData';
 
@@ -23,7 +24,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState({ loggedIn: false, user: '', access_token: '', refresh_token: '' });
   const [progress, setProgress] = useState(0);
   const [loaded, setLoaded] = useState(false);
-
 
   // task api
   const [tasks, setTasks] = useState([]);
@@ -123,6 +123,7 @@ function App() {
               />}
               />
             </Routes>
+            <Footer />
           </AppBar>
         </div>
       </Router>

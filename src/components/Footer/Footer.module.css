@@ -1,0 +1,25 @@
+.footer{
+    padding: 20px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border-top: 1px solid #ccc;
+}
+
+.footer__content{
+    margin-top: 20px;
+}
+
+.contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contactButtons > *{
+    margin: 0 5px;
+}
