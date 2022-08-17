@@ -11,6 +11,7 @@ import './App.css';
 
 import AppBar from './components/AppBar/AppBar';
 import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
 import Home from './pages/Home/Home';
 import AddTaskModal from './components/Modals/AddTaskModal';
 import CompleteTaskModal from './components/Modals/CompleteTaskModal';
@@ -79,7 +80,7 @@ function App() {
       getData();
     }
     // data is loaded when user logs in and when progress changes
-  }, [loggedIn, tasks])
+  }, [loggedIn, progress, tasks])
 
 
   const darkTheme = createTheme({
@@ -108,6 +109,7 @@ function App() {
           >
             <Routes>
               <Route path="/login" element={<Login setLoggedIn={setLoggedIn} setProgress={setProgress} />} />
+              <Route path="/register" element={<Register setLoggedIn={setLoggedIn} setProgress={setProgress} />} />
               <Route path="/home" element={<Home 
                 loaded={loaded}
                 loggedIn={loggedIn}

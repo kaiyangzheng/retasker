@@ -3,6 +3,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 import TaskTable from './../TaskTable/TaskTable';
 
@@ -34,7 +35,7 @@ export default function WaitingTable(props) {
                     marginBottom: "20px",
                 }}>
                     <Typography variant="h4" component="div">
-                        ⏱ Waiting Tasks
+                        <AccessTimeIcon/> Waiting Tasks
                     </Typography>
                 </Box>
                 <TaskTable tasks={tasks} columns={columns} columnLabels={columnLabels} actions={actions} setOpenModal={setOpenModal} setProgress={setProgress}/>

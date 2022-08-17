@@ -54,5 +54,15 @@ export async function completeReview(taskId, reviewSessionId, quality, setTasks,
         console.log(err)
         return err.message
     })
+}
 
+// delete review session
+export async function deleteReview(taskId, reviewSessionId){
+    return axiosInstance.delete(`/api/v1/review-session/${taskId}/${reviewSessionId}/`)
+    .then(res => {
+        return res.data;
+    }
+    ).catch(err => {
+        console.log(err)
+    })
 }

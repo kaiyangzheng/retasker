@@ -3,6 +3,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import AlarmIcon from '@mui/icons-material/Alarm';
 
 import TaskTable from './../TaskTable/TaskTable';
 
@@ -33,7 +34,7 @@ export default function NextTask(props) {
                     marginBottom: "20px",
                 }}>
                     <Typography variant="h4" component="div">
-                        ⏰ Next Tasks
+                        <AlarmIcon/> Next Tasks
                     </Typography>
                 </Box>
                 <TaskTable tasks={tasks} columns={columns} columnLabels={columnLabels} actions={actions} setOpenModal={setOpenModal} setProgress={setProgress}/>

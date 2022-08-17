@@ -28,6 +28,7 @@ export default function TaskTable(props) {
     }
 
     const handleReviewTask = async (taskId) => {
+        console.log('hi');
         const reviewSessionId = await createReview(taskId, setProgress);
         setOpenModal({open: true, type: 'complete-task', taskId: taskId, reviewSessionId: reviewSessionId});
     }

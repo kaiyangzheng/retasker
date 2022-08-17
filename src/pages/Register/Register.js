@@ -7,43 +7,14 @@ import FormControl from '@mui/material/FormControl'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import TextField from '@mui/material/TextField'
-import Link from '@mui/material/Link'
 import { BiTask } from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom'
-
 import GoogleIcon from './../../components/GoogleIcon/GoogleIcon';
-import axiosInstance from './../../utils/axiosApi';
-import { login } from './../../utils/loadData';
 
-import styles from './Login.module.css'
+import styles from './Register.module.css'
 
-export default function Login(props) {
-    const { setLoggedIn, setProgress } = props;
-    const [user, setUser] = useState({ 'username': '', 'password': '' })
-    const navigate = useNavigate()
-
-    // check if user is logged in
-    useEffect(() => {
-        if (localStorage.getItem('loggedIn') === 'true') {
-            navigate('/home')
-        }
-    }, [])
-
-    // set title
-    useEffect(() => {
-        document.title = 'Retask | Login'
-    }, [])
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-        if (user.username.length === 0 || user.password.length === 0) {
-            return;
-        }
-        login(user, setLoggedIn, setProgress);
-        navigate('/home')
-    }
-
-    return <>
+export default function Register() {
+  return (
+    <>
         <Box
             sx={{
                 top: '50%',
@@ -90,13 +61,13 @@ export default function Login(props) {
                         </Divider>
                         <TextField label="Username" variant="outlined" style={{
                             marginBottom: '20px'
-                        }} value={user.username} onChange={(e) => setUser({ ...user, ['username']: e.target.value })} />
+                        }} />
                         <TextField label="Password" variant="outlined" type="password" style={{
                             marginBottom: '20px'
-                        }} value={user.password} onChange={(e) => setUser({ ...user, ['password']: e.target.value })} />
+                        }}  />
                         <Button variant="contained" color="primary" style={{
                             height: '50px',
-                        }} type="submit" onClick={handleLogin}> Login </Button>
+                        }} type="submit"> Login </Button>
                     </FormControl>
                     <Box sx={{
                         marginTop: '20px',
@@ -105,20 +76,21 @@ export default function Login(props) {
                         <Typography variant="body2" component="div">
                             Don't have an account?
                         </Typography>
-                        <div className="register" onClick={()=>{
-                            navigate('/register')
+                        <a href="register" style={{
+                            textDecoration: 'none',
+                            color: 'inherit'
                         }}>
                             <Typography variant="body2" component="div" sx={{
                                 color: 'primary.main',
                             }}>
                                 Sign up
                             </Typography>
-                        </div>
+                        </a>
                     
                     </Box>
                 </CardContent>
             </Card>
         </Box>
     </>
+  )
 }
-

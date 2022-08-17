@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField';
 
-import { completeReview } from '../../utils/postData'
+import { completeReview, deleteReview} from '../../utils/postData'
 import { convertUtcToLocal } from '../../utils/dateHelpers'
 
 export default function CompleteTaskModal(props) {
@@ -35,9 +35,11 @@ export default function CompleteTaskModal(props) {
         setCompletedTask(true);
     }
 
-    const handleClose = () => {
+    const handleClose = async () => {
+        await deleteReview(taskId, reviewSessionId);
         setOpenModal({open: false, type: ''});
-        setCompletedTask(false);;
+        setCompletedTask(false);
+        setQuality(0);
     }
 
     const style = {
@@ -65,7 +67,7 @@ export default function CompleteTaskModal(props) {
                         marginBottom: '5px'
                     }}>
                         <Typography variant="h4" component="div">
-                            Task #{task.id}: {task.name}
+                            {task.name}
                         </Typography>
                         <Typography variant="body1" component="div">
                             {task.description}

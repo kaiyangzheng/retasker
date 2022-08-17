@@ -11,6 +11,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import { pink } from '@mui/material/colors'
+import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
 
 export default function ModifyGroup(props) {
     const { tasks, setTasks, openAddTaskModal } = props;
@@ -41,7 +42,7 @@ export default function ModifyGroup(props) {
                     alignItems: "flex-start",
                 }}>
                     <Typography variant="h4" component="div">
-                        🔧 Modify Tasks
+                        <BuildOutlinedIcon/> Modify Tasks
                     </Typography>
                     <Typography variant="body1" component="div">
                         Add, edit, delete or favorite your tasks.
